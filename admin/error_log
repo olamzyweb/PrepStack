@@ -1,0 +1,4 @@
+[21-Mar-2025 21:13:33 UTC] PHP Notice:  Undefined index: username in /home/olamzywe/prepstack.olamzyweb.com.ng/admin/index.php on line 3
+[23-Mar-2025 14:50:14 UTC] PHP Notice:  Undefined index: username in /home/olamzywe/prepstack.olamzyweb.com.ng/admin/index.php on line 3
+[23-Mar-2025 14:55:43 UTC] PHP Notice:  Undefined variable: pass_result in /home/olamzywe/prepstack.olamzyweb.com.ng/admin/login.php on line 36
+[23-Mar-2025 14:55:43 UTC] PHP Notice:  Undefined variable: is_admin in /home/olamzywe/prepstack.olamzyweb.com.ng/admin/login.php on line 36
