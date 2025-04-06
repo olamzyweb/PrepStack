@@ -28,7 +28,7 @@ if($fileid == ""){
     <style>
 
         body{
-            background-image: url('images/bg.jpg');
+            background-image: url('images/bg2.jpg');
         }
         .question-card {
             border-radius: 15px;
@@ -38,8 +38,11 @@ if($fileid == ""){
         .card-title {
             color: #2c3e50;
         }
-        .btn-custom {
-            background-color: #f39c12;
+       .btn-custom {
+             /* background-color: #f39c12; */
+             background: #FFC107;
+            border-radius: 50px;
+            min-width: 150px;
             color: white;
         }
     </style>
@@ -129,8 +132,8 @@ if(@$status == "1"){
 function payWithPaystack(){
 
   let handler = PaystackPop.setup({
-    // key: '', // Replace with your public key
-    key: '', // Replace with your live public key
+    // key: 'pk_test_b7d97f5bd5a42fedff6dd0caa52d7d806f152c53', // Replace with your public key
+    key: 'pk_live_16e7ace9b10192306d67626c2c6b95eb9284d27e', // Replace with your live public key
     email: document.getElementById("email").value,
     amount: document.getElementById("amount").value * 100,
     // currency:"USD",
