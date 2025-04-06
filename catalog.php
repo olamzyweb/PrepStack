@@ -27,18 +27,37 @@
     <style>
 
         body{
-            background-image: url('images/bg.jpg');
+            background-image: url('images/bg2.jpg');
         }
         .question-card {
+            padding: 2px;
+            height: auto;
+            min-height: 200px;
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            background: #FFFFFF;
+            margin-right: 2px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            
         }
         .card-title {
             color: #2c3e50;
+            font-size: medium;
+        }
+        .card-text {
+            font-size: small;
+            padding: 0px;
+            margin: 9px;
+            color:rgb(22, 24, 24);
         }
         .btn-custom {
-            background-color: #f39c12;
+            /* background-color: #f39c12; */
+            background: #FFC107;
+            border-radius: 50px;
             color: white;
         }
     </style>
@@ -50,22 +69,32 @@
   <!-- Navigation -->
   <?php include 'includes/navbar2.php';?>
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Available Past Questions</h2>
-        <div class="row">
-          
-
-
-
-<!-- 
-            <div class="col-md-4">
-                <div class="card question-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Math 101</h5>
-                        <p class="card-text">Past question for Math 101 (Year: 2022).</p>
-                        <a href="checkout.html" class="btn btn-custom">Buy Now</a>
-                    </div>
-                </div>
+        <!-- <h2 class="text-center mb-4">Available Past Questions</h2> -->
+        <div>
+        <input type="search" name="search" id="search" class="form-control mb-4" placeholder="Search for past questions...">
+    </div>
+        <!-- <div class="row mb-4">
+            <div class="col-md-3">
+                <select class="form-select" id="category" name="category">
+                    <option value="">All Categories</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Science">Science</option>
+                    <option value="Arts">Arts</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="year" name="year">
+                    <option value="">All Years</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                </select>
             </div> -->
+            
+
+        <div class="row">
+        <div id="search-results"></div>
+       
         
         <?php  
         include 'includes/connection.php';
@@ -80,7 +109,7 @@
         
         foreach ($records as $record) {
             echo '
-            <div class="col-md-4">
+            <div class="col-6 col-md-4">
                 <div class="card question-card">
                     <div class="card-body">
                         <h5 class="card-title">'.$record['file_name'].'</h5>
@@ -103,9 +132,35 @@
         
         </div>
     </div>
-    <?php // include 'includes/footer.php';?>
-    <script src="assets/js/script.js">
-        
+
+    <script>
+document.getElementById("search").addEventListener("keyup", function () {
+    let query = this.value; // Get search input
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "search.php?q=" + query, true);
+    
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById("search-results").innerHTML = xhr.responseText;
+        }
+    };
+    
+    xhr.send();
+});
+
+
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.js" integrity="sha512-docBEeq28CCaXCXN7cINkyQs0pRszdQsVBFWUd+pLNlEk3LDlSDDtN7i1H+nTB8tshJPQHS0yu0GW9YGFd/CRg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj+KsslFkCOt3TvJrX2AV/Gc3wOqA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj+KsslFkCOt3TvJrX2AV/Gc3wOqA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <?php // include 'includes/footer.php';?>
+    <script src="assets/js/script.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous">
+        </script>
+  
 </body>
 </html>
