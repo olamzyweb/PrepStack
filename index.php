@@ -886,5 +886,8 @@ mobileMenu.addEventListener('click', () => {
 
 
   </script>
+<!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
+<div class="elfsight-app-bd8a8ef5-2cee-45f6-94c2-853491730d63" data-elfsight-app-lazy></div>
 </body>
 </html>
