@@ -63,7 +63,7 @@ try {
     $mail->Host = 'mail.olamzyweb.com.ng';
     $mail->SMTPAuth = true;
     $mail->Username = 'olanrewaju@olamzyweb.com.ng';
-    $mail->Password = 'Olamzyweb@17';
+    $mail->Password = '';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
     $mail->isHTML(true);
