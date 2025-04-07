@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -772,7 +777,7 @@ footer {
     <div class="contact-content">
       <!-- Contact Form -->
       <div class="contact-form">
-        <form action="#" method="POST">
+        <form action="contact.php" enctype="multipart/form-data" name="contact_form" id="contact_form" method="POST">
           <div class="form-group">
             <input type="text" name="name" placeholder="Your Name" required>
           </div>
@@ -782,7 +787,8 @@ footer {
           <div class="form-group">
             <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
           </div>
-          <button type="submit" class="submit-button">Send Message</button>
+         <div id="result"></div>
+          <button type="submit" class="submit-button" id="contact-btn">Send Message</button>
         </form>
       </div>
       <!-- Contact Information -->
@@ -835,7 +841,29 @@ footer {
   </footer>
 
   <!-- JavaScript for Interactive Effects -->
-  <script>
+   <script type="text/javascript">
+
+// jQuery for AJAX form submission
+      $(document).ready(function(){
+          $('#contact-btn').click(function(e){
+            document.getElementById("contact-btn").disabled = true;
+            document.getElementById("contact-btn").innerHTML = "Processing...";
+           
+              e.preventDefault();
+              // .click('#submit');
+              $.ajax({
+                  url: "contact.php",
+                  type: "POST",
+                  data: $('#contact_form').serialize(),
+                  success: function(response){
+                      $("#result").html(response);
+                      document.getElementById("contact-btn").disabled = false;
+                      document.getElementById("contact-btn").innerHTML = "Send Message";
+                  }
+              });
+              return false;
+          });
+      });
 
 // Add interactive effects or animations here
 // Example: Smooth scrolling for anchor links
