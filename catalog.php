@@ -161,6 +161,8 @@ document.getElementById("search").addEventListener("keyup", function () {
     <script src="assets/js/script.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous">
         </script>
-  
+  <!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
+<div class="elfsight-app-bd8a8ef5-2cee-45f6-94c2-853491730d63" data-elfsight-app-lazy></div>
 </body>
 </html>
