@@ -13,7 +13,7 @@ $mail->isSMTP();                                      // Set mailer to use SMTP
 $mail->Host = 'mail.olamzyweb.com.ng;  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
 $mail->Username = 'olanrewaju@olamzyweb.com.ng';                 // SMTP 
-$mail->Password = 'Olamzyweb@17';                           // SMTP password
+$mail->Password = '';                           // SMTP password
 $mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 
 $mail->From = 'horlameedayolanrewaju@gmail.com';
