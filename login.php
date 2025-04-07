@@ -21,13 +21,13 @@ session_start();
 body {
   /* background: #007bff; */
   /* background: linear-gradient(to right, #0062E6, #33AEFF); */
-  background-image: url('images/bg.jpg');
+  background-image: url('images/hero3.jpg');
 }
 
 .card-img-left {
   width: 45%;
   /* Link to your background image using in the property below! */
-  background: scroll center url('images/bg.jpg');
+  background: scroll center url('images/hero3.jpg');
   background-size: cover;
 }
 
@@ -35,6 +35,7 @@ body {
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
   padding: 0.75rem 1rem;
+  background-color: #ffc107;
 }
 
 .btn-google {
@@ -45,6 +46,15 @@ body {
 .btn-facebook {
   color: white !important;
   background-color: #3b5998;
+}
+a{
+  color: black;
+}
+.back{
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
 }
     </style>
 </head>
@@ -109,7 +119,7 @@ try {
     $mail->Host = 'mail.olamzyweb.com.ng';
     $mail->SMTPAuth = true;
     $mail->Username = 'olanrewaju@olamzyweb.com.ng';
-    $mail->Password = 'Olamzyweb@17';
+    $mail->Password = '';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
     $mail->isHTML(true);
@@ -228,7 +238,7 @@ try {
               <!-- Background image for card set n CSS! -->
             </div>
             <div class="card-body p-4 p-sm-5">
-            <button onclick="goBack()"><img width="30" height="30" src="https://img.icons8.com/windows/32/circled-left.png" alt="circled-left"/></button>
+            <button onclick="goBack()" class="back"><img width="30" height="30" src="https://img.icons8.com/windows/32/circled-left.png" alt="circled-left"/></button>
               <h5 class="card-title text-center mb-5 fw-light fs-5">Login</h5>
               <form method="post" enctype="multipart/form-data" action="login.php">
   
@@ -255,7 +265,7 @@ try {
                 </div> -->
   <!-- <input type="submit" name="login"> -->
                 <div class="d-grid mb-2">
-                  <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" name="login" type="submit">Login</button>
+                  <button class="btn btn-lg btn-login fw-bold text-uppercase" name="login" type="submit">Login</button>
                 </div>
   
                 <a class="d-block text-center mt-2 small" href="register.html">Don't Have an account? Sign Up</a>
