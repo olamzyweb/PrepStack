@@ -2,9 +2,9 @@
 
 //$connect = mysqli_connect("localhost","root","","onlineherbs");
 $servername = "localhost";
-$username = "olamzywe_olamzyweb";
-$password = "Olamzyweb@17";
-$dbname = "olamzywe_prepstack";
+$username = "";
+$password = "";
+$dbname = "";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
