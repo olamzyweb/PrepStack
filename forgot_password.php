@@ -10,6 +10,11 @@ use PHPMailer\PHPMailer\Exception;
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+       if(empty($_POST['email'])){
+        echo "Please enter your email address.";
+        exit;
+    }
     $email = trim($_POST['email']);
 
     // Check if the email exists in the database
