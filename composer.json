@@ -1,4 +1,7 @@
+
 {
+    "name": "olamzyweb/prepstack",
+    "description": "PrepStack is a PHP application for downloading and accessing exam past question resources.",
     "require": {
         "phpmailer/phpmailer": "^6.9"
     }
