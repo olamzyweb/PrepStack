@@ -186,9 +186,11 @@ function payWithPaystack(){
             const fileurl2 = document.getElementById("fileurl").value;
     const fileUrl = 'file/' + fileurl2; // Replace with your file URL
     const fileName = fileurl2; // Desired file name
+    const fileid = document.getElementById("fileid").value; // Get file ID from the hidden input
+    const filename = document.getElementById("filename").value;
 
             // Construct the secure download URL
-            const downloadUrl = 'download.php?file=' + encodeURIComponent(fileName);
+            const downloadUrl = 'download.php?file=' + encodeURIComponent(fileName) + '&fileid=' + encodeURIComponent(fileid) + '&filename=' +encodeURIComponent(filename);
 
             // Create an anchor tag dynamically
             const a = document.createElement('a');

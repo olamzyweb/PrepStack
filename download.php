@@ -1,53 +1,22 @@
 <?php session_start();
-// $ref = $_SESSION['reference'];
-// $filename = $_SESSION['fname'];
-// $fileurl = $_SESSION['furl'];
+include 'includes/connection.php';
 
-// if(empty($ref)){
-//     header("location:javascript://history.go(-1)");
-//     exit;
-//     }
-//     if (!isset($_SESSION['furl']) || !isset($_SESSION['fname'])) {
-//         echo "Download error: file not found.";
-//         exit;
-//     }
-
-// // File path
-// $file = "file/".$fileurl; // Replace with your actual file path
-
-// // Check if the file exists
-// if (file_exists($file)) {
-//     // Set headers to force download
-//     header('Content-Description: File Transfer');
-//     header('Content-Type: application/pdf');
-//     header('Content-Disposition: attachment; filename="' . basename($file) . '"');
-//     header('Expires: 0');
-//     header('Cache-Control: must-revalidate');
-//     header('Pragma: public');
-//     header('Content-Length: ' . filesize($file));
-
-//     // Clear output buffer
-//     ob_clean();
-//     flush();
-
-//     // Read the file and output it to the user
-//     readfile($file);
-//     // Unset specific session variables after download
-//     // unset($_SESSION['furl']);    // Clear the file URL session
-//     // unset($_SESSION['fname']);   // Clear the file name session
-//     // unset($_SESSION['reference']); // Clear the reference session if needed
-
-//     exit;
-// } else {
-//     echo "File not found.";
-// }
-
-
-if (isset($_GET['file'])) {
+if (isset($_GET['file']) && isset($_GET['fileid']) && isset($_GET['filename'])) {
+    $file_id = (int) $_GET['fileid']; // Cast to integer for safety
+    $file_name = $_GET['filename'];
     $fileName = basename($_GET['file']); // Prevent directory traversal attacks
     $filePath = __DIR__ . "/file/" . $fileName;
 
     if (file_exists($filePath)) {
+$user_id = $_SESSION['user_id']; // Assuming user ID is stored in session
+
+// Log the download in the database
+$stmt = $conn->prepare("INSERT INTO downloads (user_id, file_id, file_name, file_url) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("iiss", $user_id, $file_id, $file_name, $fileName);
+$stmt->execute();
+$stmt->close();
+
+
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename="' . $fileName . '"');
