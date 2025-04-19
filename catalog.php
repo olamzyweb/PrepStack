@@ -22,7 +22,7 @@
     <title>Past Questions Catalog</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
 
@@ -60,6 +60,139 @@
             border-radius: 50px;
             color: white;
         }
+
+        
+
+
+
+
+
+
+
+
+        .form-check-input {
+    accent-color: #ffc107; /* Bootstrap blue, change to any color you want */
+  }
+
+  .form-check-input:checked {
+    background-color: #FFC107;
+    border-color: #FFC107;
+    box-shadow: 0 0 4pxrgb(253, 189, 13);
+  }
+
+  .form-check-input:hover {
+    border-color: #FFC107;
+  }
+
+  .form-check-input {
+    width: 1.2em;
+    height: 1.2em;
+    cursor: pointer;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        .filter-sidebar {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            height: fit-content;
+        }
+        
+        .filter-header {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .category-filter {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .category-filter li {
+            margin-bottom: 8px;
+        }
+        
+        .category-filter a {
+            color: #555;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .category-filter a:hover {
+            color: #FFC107;
+        }
+        
+        .price-range-slider {
+            width: 100%;
+        }
+        
+        .price-range-values {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .mobile-filter-btn {
+            display: none;
+        }
+        
+        @media (max-width: 992px) {
+            .filter-sidebar {
+                position: fixed;
+                top: 0;
+                left: -300px;
+                width: 280px;
+                height: 100vh;
+                z-index: 1000;
+                transition: left 0.3s ease;
+                overflow-y: auto;
+            }
+            
+            .filter-sidebar.active {
+                left: 0;
+            }
+            
+            .mobile-filter-btn {
+                display: block;
+            }
+            
+            .close-filter-btn {
+                display: block;
+                position: absolute;
+                right: 15px;
+                top: 15px;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                display: none;
+            }
+            
+            .overlay.active {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -68,87 +201,165 @@
      </div>
   <!-- Navigation -->
   <?php include 'includes/navbar2.php';?>
-    <div class="container mt-5">
-        <!-- <h2 class="text-center mb-4">Available Past Questions</h2> -->
-        <div>
-        <input type="search" name="search" id="search" class="form-control mb-4" placeholder="Search for past questions...">
-    </div>
-        <!-- <div class="row mb-4">
-            <div class="col-md-3">
-                <select class="form-select" id="category" name="category">
-                    <option value="">All Categories</option>
-                    <option value="Mathematics">Mathematics</option>
-                    <option value="Science">Science</option>
-                    <option value="Arts">Arts</option>
-                </select>
+
+
+  <div class="container my-4">
+        <div class="row">
+            <!-- Filter Sidebar -->
+            <div class="col-lg-3">
+                
+                <div class="filter-sidebar mb-4">
+                <br><br>
+                    <span class="close-filter-btn d-lg-none">&times;</span>
+                    
+                    <h5 class="filter-header">Categories</h5>
+                    <form>
+                    <div class="form-check">
+  <input class="form-check-input" type="radio" name="category" id="all" checked>
+  <label class="form-check-label" for="all">
+   All
+  </label>
+</div>
+                    <div class="form-check">
+  <input class="form-check-input" type="radio" name="category" id="waec"  value="waec">
+  <label class="form-check-label" for="waec">
+   WAEC
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="category" id="utme" value="utme">
+  <label class="form-check-label" for="utme">
+    UTME
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="category" id="postutme" value="postutme">
+  <label class="form-check-label" for="postutme">
+  Post UTME
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="category" id="University" value="University">
+  <label class="form-check-label" for="University">
+    University
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="category" id="lecturenotes" value="lecturenotes">
+  <label class="form-check-label" for="lecturenotes">
+    Lecture Notes
+  </label>
+</div>
+    </form>                    
+                    <h5 class="filter-header mt-4">Year</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="year2022">
+                        <label class="form-check-label" for="year2022">2022</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="year2023">
+                        <label class="form-check-label" for="year2023">2023</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="year2024">
+                        <label class="form-check-label" for="year2024">2024</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="year2025">
+                        <label class="form-check-label" for="year2025">2025</label>
+                    </div>
+                    
+                    <button class="btn btn-custom w-100 mt-3">Apply Filters</button>
+                    <button class="btn btn-outline-secondary w-100 mt-2">Reset</button>
+                </div>
             </div>
-            <div class="col-md-3">
-                <select class="form-select" id="year" name="year">
-                    <option value="">All Years</option>
-                    <option value="2022">2022</option>
-                    <option value="2021">2021</option>
-                    <option value="2020">2020</option>
-                </select>
-            </div> -->
-            
+            <div class="col-lg-9">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="d-flex">
+                        <button class="btn btn-outline-secondary mobile-filter-btn me-2 d-lg-none">
+                            <i class="fas fa-filter"></i> Filters
+                        </button>
+                        <select class="form-select" style="width: auto;">
+                            <option>Sort by: Featured</option>
+                            <option>Newest</option>
+                            <option>Most Downloaded</option>
+                        </select>
+                    </div>
+                </div>
+      
+    <div class="container mt-5">
+        <!-- search bar -->
+        <div>
+        <input type="search" name="search" id="search" class="form-control mb-4" placeholder="Search by Year, Catergory, Level...">
+    </div>
+        <div class="row mb-4">
+          
 
         <div class="row">
-        <div id="search-results"></div>
+        <div id="search-result" class="row"></div>
        
         
         <?php  
-        include 'includes/connection.php';
-
-
-        $query = "SELECT * FROM files";
-        $stmt = $conn->prepare($query);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        $records = $result->fetch_all(MYSQLI_ASSOC);
-        
-        foreach ($records as $record) {
-            echo '
-            <div class="col-6 col-md-4">
-                <div class="card question-card">
-                    <div class="card-body">
-                        <h5 class="card-title">'.$record['file_name'].'</h5>
-                        <p class="card-text">'.$record['file_category'].'</p>
-                         <p class="card-text">'.$record['file_code'].'</p>
-                          <p class="card-text">N'.$record['amount'].'</p>
-                        <a href="catalogdetail.php?fileid='.$record['file_id'].'" class="btn btn-custom">Get Now</a>
-                    </div>
-                </div>
-            </div>';
-        }
-        
-        
-        
-        
-        
-        
-        
+        include 'includes/connection.php';        
         ?>
-        
+    
         </div>
     </div>
-
+    <div class="overlay"></div>
     <script>
-document.getElementById("search").addEventListener("keyup", function () {
-    let query = this.value; // Get search input
+function load_data(query = '', page = 1) {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "search.php?q=" + query, true);
+    xhr.open("GET", "search.php?q=" + encodeURIComponent(query) + "&page=" + page, true);
     
     xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            document.getElementById("search-results").innerHTML = xhr.responseText;
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById("search-result").innerHTML = xhr.responseText;
         }
     };
     
     xhr.send();
+}
+document.getElementById("search").addEventListener("keyup", function () {
+    const query = this.value;
+    load_data(query, 1); // Always reset to page 1 on new search
 });
 
+$(document).on('click', '.search-page-link', function (e) {
+    e.preventDefault();
+    const page = $(this).data('page');
+    const query = $('#search').val();
+    load_data(query, page);
+});
+load_data(); // Initial load
 
+    </script>
+
+     <script>
+        // Mobile filter toggle
+        document.querySelector('.mobile-filter-btn').addEventListener('click', function() {
+            document.querySelector('.filter-sidebar').classList.add('active');
+            document.querySelector('.overlay').classList.add('active');
+        });
+        
+        // Close filter sidebar
+        document.querySelector('.close-filter-btn').addEventListener('click', function() {
+            document.querySelector('.filter-sidebar').classList.remove('active');
+            document.querySelector('.overlay').classList.remove('active');
+        });
+        
+        // Close filter sidebar when clicking overlay
+        document.querySelector('.overlay').addEventListener('click', function() {
+            document.querySelector('.filter-sidebar').classList.remove('active');
+            this.classList.remove('active');
+        });
+        
+        // Price range display update
+        const priceSlider = document.querySelector('.price-range-slider');
+        const priceValues = document.querySelectorAll('.price-range-values span');
+        
+        priceSlider.addEventListener('input', function() {
+            priceValues[1].textContent = '$' + this.value;
+        });
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -157,12 +368,10 @@ document.getElementById("search").addEventListener("keyup", function () {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.js" integrity="sha512-docBEeq28CCaXCXN7cINkyQs0pRszdQsVBFWUd+pLNlEk3LDlSDDtN7i1H+nTB8tshJPQHS0yu0GW9YGFd/CRg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj+KsslFkCOt3TvJrX2AV/Gc3wOqA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj+KsslFkCOt3TvJrX2AV/Gc3wOqA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <?php // include 'includes/footer.php';?>
+    <?php //include 'includes/footer.php';?>
     <script src="assets/js/script.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous">
         </script>
-  <!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
-<script src="https://static.elfsight.com/platform/platform.js" async></script>
-<div class="elfsight-app-bd8a8ef5-2cee-45f6-94c2-853491730d63" data-elfsight-app-lazy></div>
+  
 </body>
 </html>
