@@ -47,6 +47,7 @@
   <!-- Navigation -->
  <?php include 'includes/navbar.php';
   $usernam = $_SESSION['username'];
+  $user_id = $_SESSION['user_id'];
  ?>
 
   <div class="container px-5 my-5">
@@ -54,7 +55,7 @@
     <div class="col-lg-10">
       <div class="card border-0 rounded-3 shadow-lg">
         <div class="card-body p-4">
-            <h2>Transactions</h2>
+            <h2>Paid Transactions</h2>
           <div class="text-center">
             <div class="table-responsive">
                 
@@ -77,13 +78,15 @@
 
 $query = "SELECT * FROM transactions WHERE username='$usernam'";
 $sql = mysqli_query($conn, $query);
+if(mysqli_num_rows($sql) == 0){
+    echo "<h5>No transactions found</h5>";
+}
+else{
+   
 
 while ($row= mysqli_fetch_assoc($sql)) {
   
 ?>
-
-
-
       <tr>
         <td><?php echo $row['transaction_id'];?></td>
         <td><?php echo $row['file_name'];?></td>
@@ -94,26 +97,76 @@ while ($row= mysqli_fetch_assoc($sql)) {
       </tr>
 <?php
     }
-    
+  }
     ?>
-      <!-- <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-        <td>2024-03-16</td>
-        <td><button type="button" class="btn btn-success">Completed</button></td>
-        <td><button type="button" class="btn btn-warning">&nbspVerify</button></td>
-      </tr>  -->
+      
     </tbody>
   </table>
   </div> 
-        
-        
-  
-        <!-- </div> -->
     </div>
-
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
    
+<!-- downloaded files -->
+<div class="container px-5 my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card border-0 rounded-3 shadow-lg">
+        <div class="card-body p-4">
+            <h2>Downloads</h2>
+          <div class="text-center">
+            <div class="table-responsive">
+                
+          <table class="table">
+    <thead>
+      <tr>
+        <th>File name</th>
+        <th>Download Id</th>
+        <th>Download Date</th>
+        <th>Status</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+
+    <?php 
+    include 'includes/connection.php';
+
+
+$query = "SELECT * FROM downloads WHERE user_id='$user_id'";
+$sql = mysqli_query($conn, $query);
+
+while ($row= mysqli_fetch_assoc($sql)) {
+  
+?>
+      <tr>
+        
+        <td><?php echo $row['file_name'];?></td>
+        <td><?php echo $row['file_id'];?></td>
+        <td><?php echo $row['downloaded_at'];?></td>
+        <td><button type="button" class="btn btn-success">Success</button></td>
+        <!--<td><button type="button" class="btn btn-warning">&nbsp<a href="<?php // echo "file/".$row['file_url'];?>">Download</a></button></td>-->
+      </tr>
+<?php
+    }
+    
+    ?>
+      
+    </tbody>
+  </table>
+  </div> 
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+   
+
+
 <div class="foot">
 <footer style="background-color: #fff;  position: relative;
             bottom: 0;
